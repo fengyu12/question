@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+	</head>
+	<body>
+		<header>备忘录</header>
+		<main></main>
+		<footer class="flex "><img class="pull-left write" src="img/new.jpg"/><span class="pull-right new">首 页</span></footer>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('.write').click(function(){location='write.html'});
+			$('.new').click(()=>{location='/'});
+			$('header').html('备忘录-'+$.cookie('listname'));
+			$.get('/index/content',(data)=>{
+				var num=Object.keys(data).length;
+				for(var i=0,j=1,str='';i<num-1;i++){
+					str+=`
+							<section class="list" data-num=${i+1}>
+								<span>${data['content'+j]}</span>
+							</section>
+					`
+					j++;
+				}
+				$('main').html(str);
+			})
+			$('main').on('click','.list',function(){
+				var content=$(this).find('span').text();
+				$.cookie('content',content);
+				$.cookie('num',$(this).data('num'));
+				location='edit.html';
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+	</head>
+	<body>
+		<header>备忘录</header>
+		<main></main>
+		<footer><span class="pull-right new">新建文件夹</span></footer>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('main').on('click','.list[data-list]',function(){
+				$.cookie('listname',$(this).data('list'));
+				location='content.html';
+			})
+			$('.new').click(()=>{
+				var filename=prompt('新建文件夹');
+				var obj={name:filename}
+				//传递文件夹名到后台
+				$.post('/create',obj,(data)=>{
+					data.code==1?location='/':alert(data.msg);
+				});
+			})
+			$.get('/index',(data)=>{
+				var str='';
+				for(var i=0;i<data.list.length;i++){
+					str+=`
+							<section class="list" data-list='${data.list[i]}'>
+								<span>${data.list[i]}</span><span class="pull-right glyphicon glyphicon-chevron-right"></span><span class="pull-right padright">${data.nums[i]}</span>
+							</section>
+					`
+				}
+				console.log(data)
+				$('main').html(str);
+			})
+		</script>
+	</body>
+</html>

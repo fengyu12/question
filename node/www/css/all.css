@@ -1,0 +1,58 @@
+header{
+	text-align: center;
+	height: 10vh;
+	line-height: 10vh;
+	font-size: 20px;
+	color: gray;
+	font-weight: bolder;
+}
+footer{
+	line-height: 10vh;
+	height: 10vh;
+}
+.new{
+	padding-right: 20px;
+	color: orange;
+	cursor: pointer;
+}
+.flex{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.write{
+	cursor: pointer;
+	padding-left: 20px;
+	display: block;
+	height: 40px;
+	
+}
+main{
+	height: 80vh;
+	border-top: 1px solid darkgray;
+	border-bottom: 1px solid darkgray;
+}
+body{
+	background: url(../img/bg.jpg);
+}
+.list{
+	cursor: pointer;
+	width: 95%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	margin: 0 auto;
+	color: darkgray;
+	border-bottom: 1px solid darkgray;
+}
+.glyphicon{
+	line-height: 50px;
+	font-size: 16px;
+}
+.padright{
+	padding-right: 10px;
+}
+textarea{
+	display: block;
+	margin: 0 auto;
+}
